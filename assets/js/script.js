@@ -10,22 +10,31 @@ var currUviEl = document.querySelector("#curr-uvi");
 
 var savedPlaces = [];
 
+var setCurrentInfo = function (data) {
+
+  currIconEl.setAttribute("src","http://openweathermap.org/img/wn/" +data.current.weather[0].icon +"@2x.png");
+  currTempEl.textContent = data.current.temp;
+  currWindEl.textContent = data.current.wind_speed + " MPH";
+  currHumidEl.textContent = data.current.humidity + "%";
+  currUviEl.textContent = data.current.uvi;
+};
+
 var getPlaceData = function (coord) {
   var lat = coord.lat;
   var long = coord.long;
   var placeName = coord.placeName;
   var apiUrl =
-    "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+long+"&exclude=minutely,hourly,alerts&units=imperial&appid=ffd54ea96bf3b94acf8e72a75c1d3667";
+    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+    lat +
+    "&lon=" +
+    long +
+    "&exclude=minutely,hourly,alerts&units=imperial&appid=ffd54ea96bf3b94acf8e72a75c1d3667";
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
+        setCurrentInfo(data);
         currCityEl.textContent = placeName;
-        currIconEl.setAttribute("src", "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png");
-        currTempEl.textContent = data.current.temp;
-        currWindEl.textContent = data.current.wind_speed + " MPH";
-        currHumidEl.textContent = data.current.humidity + "%";
-        currUviEl.textContent = data.current.uvi;
         cityNameEl.value = "";
       });
     } else {
@@ -40,7 +49,15 @@ var createHistoryBtn = function (savedPlace) {
   var city = savedPlace.placeName;
   var newPlaceBtn = document.createElement("button");
 
-  newPlaceBtn.classList.add("button", "is-warning", "is-medium", "is-fullwidth", "is-light", "mt-2", "history-btn");
+  newPlaceBtn.classList.add(
+    "button",
+    "is-warning",
+    "is-medium",
+    "is-fullwidth",
+    "is-light",
+    "mt-2",
+    "history-btn"
+  );
   newPlaceBtn.setAttribute("data-lat", lat);
   newPlaceBtn.setAttribute("data-long", long);
   newPlaceBtn.textContent = city;
@@ -56,8 +73,8 @@ var loadPlaces = function () {
 
   savedPlaces = JSON.parse(savedPlaces);
 
-    for (var i = savedPlaces.length - 5; i < savedPlaces.length; i++) {
-      createHistoryBtn(savedPlaces[i]);
+  for (var i = savedPlaces.length - 5; i < savedPlaces.length; i++) {
+    createHistoryBtn(savedPlaces[i]);
   }
 };
 
@@ -71,7 +88,9 @@ var savePlace = function (obj) {
 
 var getPlace = function () {
   var apiUrl =
-    "https://api.openweathermap.org/data/2.5/weather?q=" + cityNameEl.value + "&units=imperial&appid=ffd54ea96bf3b94acf8e72a75c1d3667";
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    cityNameEl.value +
+    "&units=imperial&appid=ffd54ea96bf3b94acf8e72a75c1d3667";
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
@@ -97,17 +116,19 @@ submitBtnEl.addEventListener("click", function (event) {
   getPlace();
 });
 
-cityHistoryEl.addEventListener("click", function(event){
+cityHistoryEl.addEventListener("click", function (event) {
   /*Needed to create placeObj again here so that I can call the
   getPlaceData function directly, and avoid putting the history button
   cities into local storage again.*/
   var lat = event.target.getAttribute("data-lat");
   var long = event.target.getAttribute("data-long");
   var placeName = event.target.textContent;
-  var placeObj = {placeName, lat, long}
-
-  getPlaceData(placeObj);
-})
+  var placeObj = { placeName, lat, long };
+  //checks to make sure only button clicks call the API.
+  if(event.target.hasAttribute("data-lat")){
+    getPlaceData(placeObj);
+  }
+});
 
 /*
   fetch(apiUrl)
