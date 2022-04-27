@@ -39,7 +39,7 @@ var createHistoryBtn = function (savedPlace) {
   newPlaceBtn.setAttribute("data-long", long);
   newPlaceBtn.textContent = city;
 
-  cityHistoryEl.appendChild(newPlaceBtn);
+  cityHistoryEl.prepend(newPlaceBtn);
 };
 
 var loadPlaces = function () {
@@ -50,7 +50,7 @@ var loadPlaces = function () {
 
   savedPlaces = JSON.parse(savedPlaces);
 
-    for (var i = 0; i < savedPlaces.length; i++) {
+    for (var i = savedPlaces.length - 5; i < savedPlaces.length; i++) {
       createHistoryBtn(savedPlaces[i]);
   }
 };
@@ -74,6 +74,8 @@ var getPlace = function () {
         var placeName = data.name;
         var placeObj = { placeName, lat, long };
         savePlace(placeObj);
+        cityHistoryEl.textContent = "";
+        loadPlaces();
         getPlaceData(placeObj);
       });
     } else {
