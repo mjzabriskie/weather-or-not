@@ -1,11 +1,13 @@
 var cityNameEl = document.querySelector("#city-name");
 var submitBtnEl = document.querySelector("#submit");
-var currentCity = document.querySelector("#current-city");
-var currTemp = document.querySelector("#curr-temp");
-var currWind = document.querySelector("#curr-wind");
-var currHumidity = document.querySelector("#curr-humidity");
-var currUvi = document.querySelector("#curr-uvi");
 var cityHistoryEl = document.querySelector("#city-history");
+var currCityEl = document.querySelector("#current-city");
+var currIconEl = document.querySelector("#curr-icon");
+var currTempEl = document.querySelector("#curr-temp");
+var currWindEl = document.querySelector("#curr-wind");
+var currHumidEl = document.querySelector("#curr-humid");
+var currUviEl = document.querySelector("#curr-uvi");
+
 var savedPlaces = [];
 
 var getPlaceData = function (coord) {
@@ -18,8 +20,12 @@ var getPlaceData = function (coord) {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        currentCity.textContent = placeName;
-        currTemp.textContent = data.current.temp;
+        currCityEl.textContent = placeName;
+        currIconEl.setAttribute("src", "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png");
+        currTempEl.textContent = data.current.temp;
+        currWindEl.textContent = data.current.wind_speed + " MPH";
+        currHumidEl.textContent = data.current.humidity + "%";
+        currUviEl.textContent = data.current.uvi;
         cityNameEl.value = "";
       });
     } else {
