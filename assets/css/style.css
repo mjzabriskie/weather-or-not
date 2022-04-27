@@ -7,3 +7,15 @@ body {
     margin: 0;
     padding: 0;
 }
+
+main {
+    height: 100vh;
+}
+
+.button {
+    height: 40px;
+}
+
+/* .current-weather {
+    border: solid lightgray 3px;
+} */

@@ -34,7 +34,7 @@ var createHistoryBtn = function (savedPlace) {
   var city = savedPlace.placeName;
   var newPlaceBtn = document.createElement("button");
 
-  newPlaceBtn.classList.add("button", "is-info", "is-medium", "is-fullwidth", "is-light", "mt-2");
+  newPlaceBtn.classList.add("button", "is-warning", "is-medium", "is-fullwidth", "is-light", "mt-2", "history-btn");
   newPlaceBtn.setAttribute("data-lat", lat);
   newPlaceBtn.setAttribute("data-long", long);
   newPlaceBtn.textContent = city;

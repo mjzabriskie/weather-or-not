@@ -12,29 +12,29 @@
 
 <body>
   <header class="hero">
-    <div class="hero-body">
+    <div class="hero-body has-background-info">
       <div class="container is-centered">
-        <h1 class="is-size-1-mobile is-size-1 has-text-centered title">Weather or Not! Weather Dashboard</h1>
+        <h1 class="is-size-1-mobile is-size-1 has-text-centered title has-text-light">Weather or Not! Weather Dashboard</h1>
       </div>
     </div>
   </header>
 
-  <main class="columns mx-6">
-    <div class="column is-one-quarter">
+  <main class="columns has-background-link-light">
+    <div class="column  mx-6 is-one-quarter">
       <div id="search-container" class="search-container">
         <form id="city-search" class="card-body">
-          <h2 class="has-text-centered">Search for a city:</h2>
-          <input name="city-name" id="city-name" type="text" autofocus="true" class="form-input" />
+          <h2 class="has-text-centered is-size-3 has-text-weight-semibold">Search for a city:</h2>
+          <input name="city-name" id="city-name" type="text" autofocus="true" class="input is-normal" />
           <button type="submit" id="submit" class="button is-info is-medium is-fullwidth">Search</button>
         </form>
       </div>
       <div id="city-history" class="city-history">
-        dynamically created city history buttons created here.
+        <h4 class="has-text-centered mt-5 is-size-4">History</h4>
       </div>
     </div>
     <div class="column">
-      <div id="current-weather">
-        <h2 id="current-city"></h2>
+      <div id="current-weather" class="card">
+        <h2 id="current-city" class="title card-header"></h2>
         <ul>
           <li>Temp: <span id="curr-temp">N/A</span><span>&#176; F</span></li>
           <li class="mt-2">Wind: <span id="curr-wind">N/A</span></li>
@@ -73,32 +73,6 @@
 
 
   </main>
-
-  <!-- <script>
-        let autocomplete;
-        function initAutocomplete() {
-            autocomplete = new google.maps.places.Autocomplete(
-                document.getElementById("city-name"),
-                {
-                    types: ["geocode"],
-                    // componentRestrictions: { "country": ["US"] },
-                    fields: ["place_id", "geometry", "name"]
-                });
-                autocomplete.addListener("place_changed", onPlaceChanged);
-                console.log(autocomplete)
-        }
-
-        function onPlaceChanged() {
-            var place = autocomplete.getPlace();
-
-            if(!place.geometry){
-
-            }
-        }
-    </script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArMR98gVwNtwp9uayLbFCAmJ7re4yyMTs&libraries=places&callback=initAutocomplete"
-        async defer></script> -->
 
   <script src="./assets/js/script.js"></script>
 </body>
