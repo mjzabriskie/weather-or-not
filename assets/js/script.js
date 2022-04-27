@@ -5,6 +5,7 @@ var currTemp = document.querySelector("#curr-temp");
 var currWind = document.querySelector("#curr-wind");
 var currHumidity = document.querySelector("#curr-humidity");
 var currUvi = document.querySelector("#curr-uvi");
+var cityHistoryEl = document.querySelector("#city-history");
 var savedPlaces = [];
 
 var getPlaceData = function (coord) {
@@ -27,7 +28,19 @@ var getPlaceData = function (coord) {
   });
 };
 
-var createHistoryBtn = function (placeName) {};
+var createHistoryBtn = function (savedPlace) {
+  var lat = savedPlace.lat;
+  var long = savedPlace.long;
+  var city = savedPlace.placeName;
+  var newPlaceBtn = document.createElement("button");
+
+  newPlaceBtn.classList.add("button", "is-info", "is-medium", "is-fullwidth", "is-light", "mt-2");
+  newPlaceBtn.setAttribute("data-lat", lat);
+  newPlaceBtn.setAttribute("data-long", long);
+  newPlaceBtn.textContent = city;
+
+  cityHistoryEl.appendChild(newPlaceBtn);
+};
 
 var loadPlaces = function () {
   savedPlaces = localStorage.getItem("places");
@@ -36,11 +49,10 @@ var loadPlaces = function () {
   }
 
   savedPlaces = JSON.parse(savedPlaces);
-  console.log(savedPlaces);
 
-  //   for (var i = 0; i < savedTasks.length; i++) {
-  //     createTaskEl(savedTasks[i]);
-  // }
+    for (var i = 0; i < savedPlaces.length; i++) {
+      createHistoryBtn(savedPlaces[i]);
+  }
 };
 
 var savePlace = function (obj) {
@@ -75,9 +87,19 @@ loadPlaces();
 submitBtnEl.addEventListener("click", function (event) {
   event.preventDefault();
   getPlace();
-
-  //getPlaceData(coord);
 });
+
+cityHistoryEl.addEventListener("click", function(event){
+  /*Needed to create placeObj again here so that I can call the
+  getPlaceData function directly, and avoid putting the history button
+  cities into local storage again.*/
+  var lat = event.target.getAttribute("data-lat");
+  var long = event.target.getAttribute("data-long");
+  var placeName = event.target.textContent;
+  var placeObj = {placeName, lat, long}
+
+  getPlaceData(placeObj);
+})
 
 /*
   fetch(apiUrl)
