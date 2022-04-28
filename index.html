@@ -28,7 +28,7 @@
           <button type="submit" id="submit" class="button is-info is-medium is-fullwidth">Search</button>
         </form>
       </div>
-      <div>
+      <div class="is-hidden-mobile">
         <h4 class="has-text-centered mt-5 is-size-4">History</h4>
         <div id="city-history" class="city-history"></div>
       </div>
@@ -38,9 +38,9 @@
     </div>
     <div id="curr-weather" class="column is-hidden">
       <h2 class="is-size-3">Current Weather:</h2>
-      <div class="column card is-three-quarters">
+      <div class="column card is-half">
         <h2 class="is-size-3 has-text-weight-semibold card-header has-background-info-light"><span
-            id="curr-city"></span></h2>
+            id="curr-city"></span>&nbsp;<span id="curr-dt"></span></h2>
         <ul class="px-2">
           <li class="mt-2"><img id="curr-icon" class="image is-64x64" alt=""></li>
           <li class=" mt-2">Temp: <span id="curr-temp">N/A</span><span>&#176; F</span></li>
@@ -53,51 +53,51 @@
         <h3 class="is-size-4">5-Day Forecast:</h3>
         <div class="columns pt-5">
           <div class="column card ml-3">
-            <h4 id="fut-dt-1" class="px-2 card-header is-centered has-background-info-light">Placeholder date</h4>
+            <h4 id="fut-dt-1" class="px-2 card-header is-centered has-background-info-light is-size-5"></h4>
             <ul class="px-2">
               <li class="mt-2"><img id="fut-icon-1" class="image is-48x48"
                   src="" alt="" /></li>
-              <li class="mt-2">Temp: <span id="fut-temp-1">N/A</span><span>&#176; F</span></li>
+              <li class="mt-2">High: <span id="fut-temp-1">N/A</span><span>&#176; F</span></li>
               <li class="mt-2">Wind: <span id="fut-wind-1">N/A</span></li>
               <li class="mt-2 mb-3">Humidity: <span id="fut-humid-1">N/A</span></li>
             </ul>
           </div>
           <div class="column card ml-3">
-            <h4 id="fut-dt-2" class="px-2 card-header is-centered has-background-info-light">Placeholder date</h4>
+            <h4 id="fut-dt-2" class="px-2 card-header is-centered has-background-info-light is-size-5"></h4>
             <ul class="px-2">
               <li class="mt-2"><img id="fut-icon-2" class="image is-48x48"
                   src="" alt="" /></li>
-              <li class="mt-2">Temp: <span id="fut-temp-2">N/A</span><span>&#176; F</span></li>
+              <li class="mt-2">High: <span id="fut-temp-2">N/A</span><span>&#176; F</span></li>
               <li class="mt-2">Wind: <span id="fut-wind-2">N/A</span></li>
               <li class="mt-2 mb-3">Humidity: <span id="fut-humid-2">N/A</span></li>
             </ul>
           </div>
           <div class="column card ml-3">
-            <h4 id="fut-dt-3" class="px-2 card-header is-centered has-background-info-light">Placeholder date</h4>
+            <h4 id="fut-dt-3" class="px-2 card-header is-centered has-background-info-light is-size-5"></h4>
             <ul class="px-2">
               <li class="mt-2"><img id="fut-icon-3" class="image is-48x48"
                   src="" alt="" /></li>
-              <li class="mt-2">Temp: <span id="fut-temp-3">N/A</span><span>&#176; F</span></li>
+              <li class="mt-2">High: <span id="fut-temp-3">N/A</span><span>&#176; F</span></li>
               <li class="mt-2">Wind: <span id="fut-wind-3">N/A</span></li>
               <li class="mt-2 mb-3">Humidity: <span id="fut-humid-3">N/A</span></li>
             </ul>
           </div>
           <div class="column card ml-3">
-            <h4 id="fut-dt-4" class="px-2 card-header is-centered has-background-info-light">Placeholder date</h4>
+            <h4 id="fut-dt-4" class="px-2 card-header is-centered has-background-info-light is-size-5"></h4>
             <ul class="px-2">
               <li class="mt-2"><img id="fut-icon-4" class="image is-48x48"
                   src="" alt="" /></li>
-              <li class="mt-2">Temp: <span id="fut-temp-4">N/A</span><span>&#176; F</span></li>
+              <li class="mt-2">High: <span id="fut-temp-4">N/A</span><span>&#176; F</span></li>
               <li class="mt-2">Wind: <span id="fut-wind-4">N/A</span></li>
               <li class="mt-2 mb-3">Humidity: <span id="fut-humid-4">N/A</span></li>
             </ul>
           </div>
           <div class="column card ml-3">
-            <h4 id="fut-dt-5" class="px-2 card-header is-centered has-background-info-light">Placeholder date</h4>
+            <h4 id="fut-dt-5" class="px-2 card-header is-centered has-background-info-light is-size-5"></h4>
             <ul class="px-2">
               <li class="mt-2"><img id="fut-icon-5" class="image is-48x48"
                   src="" alt="" /></li>
-              <li class="mt-2">Temp: <span id="fut-temp-5">N/A</span><span>&#176; F</span></li>
+              <li class="mt-2">High: <span id="fut-temp-5">N/A</span><span>&#176; F</span></li>
               <li class="mt-2">Wind: <span id="fut-wind-5">N/A</span></li>
               <li class="mt-2 mb-3">Humidity: <span id="fut-humid-5">N/A</span></li>
             </ul>
