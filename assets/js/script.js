@@ -49,31 +49,31 @@ var savedPlaces = [];
 var getFutureWeather = function (data) {
   //day 1 forecast
   futDt1El.textContent = new Date(data.daily[1].dt * 1000).toLocaleDateString();
-  futIcon1El.setAttribute("src","http://openweathermap.org/img/wn/" +data.daily[1].weather[0].icon +"@2x.png");
+  futIcon1El.setAttribute("src","https://openweathermap.org/img/wn/" +data.daily[1].weather[0].icon +"@2x.png");
   futTemp1El.textContent = Math.round(data.daily[1].temp.max);
   futWind1El.textContent = data.daily[1].wind_speed + " MPH";
   futHumid1El.textContent = data.daily[1].humidity + "%";
   //day 2 forecast
   futDt2El.textContent = new Date(data.daily[2].dt * 1000).toLocaleDateString();
-  futIcon2El.setAttribute("src","http://openweathermap.org/img/wn/" +data.daily[2].weather[0].icon +"@2x.png");
+  futIcon2El.setAttribute("src","https://openweathermap.org/img/wn/" +data.daily[2].weather[0].icon +"@2x.png");
   futTemp2El.textContent = Math.round(data.daily[2].temp.max);
   futWind2El.textContent = data.daily[2].wind_speed + " MPH";
   futHumid2El.textContent = data.daily[2].humidity + "%";
   //day 3 forecast
   futDt3El.textContent = new Date(data.daily[3].dt * 1000).toLocaleDateString();
-  futIcon3El.setAttribute("src","http://openweathermap.org/img/wn/" +data.daily[3].weather[0].icon +"@2x.png");
+  futIcon3El.setAttribute("src","https://openweathermap.org/img/wn/" +data.daily[3].weather[0].icon +"@2x.png");
   futTemp3El.textContent = Math.round(data.daily[3].temp.max);
   futWind3El.textContent = data.daily[3].wind_speed + " MPH";
   futHumid3El.textContent = data.daily[3].humidity + "%";
   //day 4 forecast
   futDt4El.textContent = new Date(data.daily[4].dt * 1000).toLocaleDateString();
-  futIcon4El.setAttribute("src","http://openweathermap.org/img/wn/" +data.daily[4].weather[0].icon +"@2x.png");
+  futIcon4El.setAttribute("src","https://openweathermap.org/img/wn/" +data.daily[4].weather[0].icon +"@2x.png");
   futTemp4El.textContent = Math.round(data.daily[4].temp.max);
   futWind4El.textContent = data.daily[4].wind_speed + " MPH";
   futHumid4El.textContent = data.daily[4].humidity + "%";
   //day 5 forecast
   futDt5El.textContent = new Date(data.daily[5].dt * 1000).toLocaleDateString();
-  futIcon5El.setAttribute("src","http://openweathermap.org/img/wn/" +data.daily[5].weather[0].icon +"@2x.png");
+  futIcon5El.setAttribute("src","https://openweathermap.org/img/wn/" +data.daily[5].weather[0].icon +"@2x.png");
   futTemp5El.textContent = Math.round(data.daily[5].temp.max);
   futWind5El.textContent = data.daily[5].wind_speed + " MPH";
   futHumid5El.textContent = data.daily[5].humidity + "%";
@@ -91,7 +91,7 @@ var getPlaceData = function (coord) {
       response.json().then(function (data) {//gets and sets current weather data
         currCityEl.textContent = placeName;
         currDtEl.textContent = "("+ new Date(data.current.dt * 1000).toLocaleDateString() + ")";
-        currIconEl.setAttribute("src","http://openweathermap.org/img/wn/" +data.current.weather[0].icon +"@2x.png");
+        currIconEl.setAttribute("src","https://openweathermap.org/img/wn/" +data.current.weather[0].icon +"@2x.png");
         currTempEl.textContent = Math.round(data.current.temp);
         currWindEl.textContent = data.current.wind_speed + " MPH";
         currHumidEl.textContent = data.current.humidity + "%";
