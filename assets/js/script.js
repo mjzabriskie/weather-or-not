@@ -61,15 +61,11 @@ var getFutureWeather = function (data) {
 }
 
 var getPlaceData = function (coord) {
+  console.log(coord);
   var lat = coord.lat;
   var long = coord.long;
   var placeName = coord.placeName;
-  var apiUrl =
-    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
-    lat +
-    "&lon=" +
-    long +
-    "&exclude=minutely,hourly,alerts&units=imperial&appid=ffd54ea96bf3b94acf8e72a75c1d3667";
+  var apiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=" +lat +"&lon=" +long +"&exclude=minutely,hourly,alerts&units=imperial&appid=ffd54ea96bf3b94acf8e72a75c1d3667";
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
