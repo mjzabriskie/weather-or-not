@@ -5,7 +5,8 @@ This weather dashboard combines two api calls, both from openweathermap.org. One
 
 ## Future Improvements
 * Dynamically created elements for 5-day forecast
-* Tweaks to timezone logic to allow the display of the time for each locale
+* Tweaks to timezone logic to allow the display of the time for each locale and make dates more accurate.
+* Place logic to disallow the creation of a history button if the city is already visible in the history list.
 * Better integration of Bulma
 
 ## Credits
