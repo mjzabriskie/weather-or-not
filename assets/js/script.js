@@ -96,6 +96,18 @@ var getPlaceData = function (coord) {
         currWindEl.textContent = data.current.wind_speed + " MPH";
         currHumidEl.textContent = data.current.humidity + "%";
         currUviEl.textContent = data.current.uvi;
+
+        if(data.current.uvi <= 2){
+          currUviEl.className = "";
+          currUviEl.classList.add("has-background-success");
+        }else if (data.current.uvi <= 7) {
+          currUviEl.className = "";
+          currUviEl.classList.add("has-background-warning");
+        }else{
+          currUviEl.className = "";
+          currUviEl.classList.add("has-background-danger");
+        }
+
         //hides and shows panels to hide empty values before apis are called.
         explainerEl.classList.add("is-hidden");
         currWeatherEl.classList.remove("is-hidden");
