@@ -1,23 +1,64 @@
 var cityNameEl = document.querySelector("#city-name");
 var submitBtnEl = document.querySelector("#submit");
 var cityHistoryEl = document.querySelector("#city-history");
-var currCityEl = document.querySelector("#current-city");
+var explainerEl = document.querySelector("#explainer");
+var currWeatherEl = document.querySelector("#curr-weather");
+var currCityEl = document.querySelector("#curr-city");
 var currIconEl = document.querySelector("#curr-icon");
 var currTempEl = document.querySelector("#curr-temp");
 var currWindEl = document.querySelector("#curr-wind");
 var currHumidEl = document.querySelector("#curr-humid");
 var currUviEl = document.querySelector("#curr-uvi");
+var futDt1El = document.querySelector("#fut-dt-1");
+var futIcon1El = document.querySelector("#fut-icon-1");
+var futTemp1El = document.querySelector("#fut-temp-1");
+var futWind1El = document.querySelector("#fut-wind-1");
+var futHumid1El = document.querySelector("#fut-humid-1");
+var futDt2El = document.querySelector("#fut-dt-2");
+var futIcon2El = document.querySelector("#fut-icon-2");
+var futTemp2El = document.querySelector("#fut-temp-2");
+var futWind2El = document.querySelector("#fut-wind-2");
+var futHumid2El = document.querySelector("#fut-humid-2");
+var futDt3El = document.querySelector("#fut-dt-3");
+var futIcon3El = document.querySelector("#fut-icon-3");
+var futTemp3El = document.querySelector("#fut-temp-3");
+var futWind3El = document.querySelector("#fut-wind-3");
+var futHumid3El = document.querySelector("#fut-humid-3");
+var futDt4El = document.querySelector("#fut-dt-4");
+var futIcon4El = document.querySelector("#fut-icon-4");
+var futTemp4El = document.querySelector("#fut-temp-4");
+var futWind4El = document.querySelector("#fut-wind-4");
+var futHumid4El = document.querySelector("#fut-humid-4");
+var futDt5El = document.querySelector("#fut-dt-5");
+var futIcon5El = document.querySelector("#fut-icon-5");
+var futTemp5El = document.querySelector("#fut-temp-5");
+var futWind5El = document.querySelector("#fut-wind-5");
+var futHumid5El = document.querySelector("#fut-humid-5");
 
 var savedPlaces = [];
 
-var setCurrentInfo = function (data) {
-
-  currIconEl.setAttribute("src","http://openweathermap.org/img/wn/" +data.current.weather[0].icon +"@2x.png");
-  currTempEl.textContent = data.current.temp;
-  currWindEl.textContent = data.current.wind_speed + " MPH";
-  currHumidEl.textContent = data.current.humidity + "%";
-  currUviEl.textContent = data.current.uvi;
-};
+var getFutureWeather = function (data) {
+  futIcon1El.setAttribute("src","http://openweathermap.org/img/wn/" +data.daily[0].weather[0].icon +"@2x.png");
+  futTemp1El.textContent = data.daily[0].temp.max;
+  futWind1El.textContent = data.daily[0].wind_speed + " MPH";
+  futHumid1El.textContent = data.daily[0].humidity + "%";
+  futIcon2El.setAttribute("src","http://openweathermap.org/img/wn/" +data.daily[1].weather[0].icon +"@2x.png");
+  futTemp2El.textContent = data.daily[1].temp.max;
+  futWind2El.textContent = data.daily[1].wind_speed + " MPH";
+  futHumid2El.textContent = data.daily[1].humidity + "%";
+  futIcon3El.setAttribute("src","http://openweathermap.org/img/wn/" +data.daily[2].weather[0].icon +"@2x.png");
+  futTemp3El.textContent = data.daily[2].temp.max;
+  futWind3El.textContent = data.daily[2].wind_speed + " MPH";
+  futHumid3El.textContent = data.daily[2].humidity + "%";
+  futIcon4El.setAttribute("src","http://openweathermap.org/img/wn/" +data.daily[3].weather[0].icon +"@2x.png");
+  futTemp4El.textContent = data.daily[3].temp.max;
+  futWind4El.textContent = data.daily[3].wind_speed + " MPH";
+  futHumid4El.textContent = data.daily[3].humidity + "%";
+  futIcon5El.setAttribute("src","http://openweathermap.org/img/wn/" +data.daily[4].weather[0].icon +"@2x.png");
+  futTemp5El.textContent = data.daily[4].temp.max;
+  futWind5El.textContent = data.daily[4].wind_speed + " MPH";
+  futHumid5El.textContent = data.daily[4].humidity + "%";
+}
 
 var getPlaceData = function (coord) {
   var lat = coord.lat;
@@ -33,9 +74,16 @@ var getPlaceData = function (coord) {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        setCurrentInfo(data);
         currCityEl.textContent = placeName;
+        currIconEl.setAttribute("src","http://openweathermap.org/img/wn/" +data.current.weather[0].icon +"@2x.png");
+        currTempEl.textContent = data.current.temp;
+        currWindEl.textContent = data.current.wind_speed + " MPH";
+        currHumidEl.textContent = data.current.humidity + "%";
+        currUviEl.textContent = data.current.uvi;
+        explainerEl.classList.add("is-hidden");
+        currWeatherEl.classList.remove("is-hidden");
         cityNameEl.value = "";
+        getFutureWeather(data);
       });
     } else {
       alert("Something went wrong, please try again!");
@@ -73,8 +121,14 @@ var loadPlaces = function () {
 
   savedPlaces = JSON.parse(savedPlaces);
 
-  for (var i = savedPlaces.length - 5; i < savedPlaces.length; i++) {
-    createHistoryBtn(savedPlaces[i]);
+  if (savedPlaces.length > 5) {
+    for (var i = savedPlaces.length - 5; i < savedPlaces.length; i++) {
+      createHistoryBtn(savedPlaces[i]);
+    }
+  } else {
+    for (var i = 0; i < savedPlaces.length; i++) {
+      createHistoryBtn(savedPlaces[i]);
+    }
   }
 };
 
