@@ -61,7 +61,6 @@ var getFutureWeather = function (data) {
 }
 
 var getPlaceData = function (coord) {
-  console.log(coord);
   var lat = coord.lat;
   var long = coord.long;
   var placeName = coord.placeName;
@@ -179,43 +178,3 @@ cityHistoryEl.addEventListener("click", function (event) {
     getPlaceData(placeObj);
   }
 });
-
-/*
-  fetch(apiUrl)
-    .then(function (response) {
-      //request successful
-      if (response.ok) {
-        response.json().then(function (data) {
-          displayRepos(data, user);
-        });
-      } else {
-        alert("Error: GitHub User Not Found");
-      }
-    })
-    .catch(function (error) {
-      alert("Unable to connect to GitHub");
-    });
-*/
-// var autocomplete;
-
-// var onPlaceChanged = function() {
-//     var place = autocomplete.getPlace();
-
-//     if(!place.geometry){
-//         //user didn't select prediction; reset the input field
-//         cityNameEl.placeholder = "Enter a place";
-//     } else {
-//         //display details about the valid place
-//         console.log(place.name);
-//     }
-// }
-
-// var initAutocomplete = function() {
-//     autocomplete = new google.maps.places.Autocomplete(cityNameEl,
-//     {
-//         types: ["cities"],
-//         componentRestrictions: {"country" : ["US"]},
-//         fields: ["place_id", "geometry", "name"]
-//     });
-//     autocomplete.addEventListener("place_changed", onPlaceChanged);
-// }
